@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Send me BTC
 
-## Getting Started
+Version deployed at: https://send-me-btc.vercel.app/
 
-First, run the development server:
+## Objective
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Build a simple NextJS application that allows users to generate a testnet Bitcoin
+payment request, display a QR code for the payment, and check the payment status.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requirements
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Generate a new HD wallet (No persistence)
+2. Display a form to specify the BTC amount for the payment request
+3. Upon form submission, display a QR code for the payment request using the address from the generated HD wallet and the amount provided by the user
+4. Poll until payment is received, and display appropriate message to the user
+5. Example: you might want to poll for a payment which has been received after the time when payment request was created.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Evaluation criteria
 
-## Learn More
+* Does the application work as expected? Are all loading/error cases and other edge cases handled correctly?
+* Is the code clean, modular and extensible?
+* Is the UI clear and easy to use (implements responsive design where applicable)?
 
-To learn more about Next.js, take a look at the following resources:
+## Submission instructions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Solution should be production-ready
+* Should include a README file with instructions and any details/improvements you would add.
+* Send the GitHub repository link with the solution.
