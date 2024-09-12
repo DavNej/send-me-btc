@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "validate": "pnpm tsc && pnpm lint && pnpm format"
   },
   "dependencies": {
     "bip32": "5.0.0-rc.0",
@@ -29,6 +31,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.10",
     "postcss": "^8",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

@@ -17,12 +17,12 @@ payment request, display a QR code for the payment, and check the payment status
 
 ## Evaluation criteria
 
-* Does the application work as expected? Are all loading/error cases and other edge cases handled correctly?
-* Is the code clean, modular and extensible?
-* Is the UI clear and easy to use (implements responsive design where applicable)?
+- Does the application work as expected? Are all loading/error cases and other edge cases handled correctly?
+- Is the code clean, modular and extensible?
+- Is the UI clear and easy to use (implements responsive design where applicable)?
 
 ## Submission instructions
 
-* Solution should be production-ready
-* Should include a README file with instructions and any details/improvements you would add.
-* Send the GitHub repository link with the solution.
+- Solution should be production-ready
+- Should include a README file with instructions and any details/improvements you would add.
+- Send the GitHub repository link with the solution.
