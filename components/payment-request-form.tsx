@@ -30,21 +30,30 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-async function onSubmit(values: FormValues) {
-  const uri = await generateBitcoinPaymentRequestURI(values.amount)
-
-  toast({
-    title: 'Payment request created',
-    description: uri,
-  })
-}
-
-export function PaymentRequestForm() {
+export function PaymentRequestForm({
+  setPaymentRequestURI,
+}: {
+  setPaymentRequestURI: (uri: string) => void
+}) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: { amount: '' },
   })
 
+  async function onSubmit(values: FormValues) {
+    const uri = await generateBitcoinPaymentRequestURI(values.amount)
+
+    if (uri) {
+      setPaymentRequestURI(uri)
+      return
+    }
+
+    toast({
+      title: 'Error creating payment request',
+      description: 'An error occurred while creating the payment request',
+      variant: 'destructive',
+    })
+  }
   return (
     <Form {...form}>
       <form
