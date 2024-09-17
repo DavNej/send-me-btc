@@ -10,12 +10,15 @@ export function generateHDWallet() {
 
   const root = BIP32Factory(ecc).fromSeed(seed)
 
-  // Derive the first Bitcoin address to receive funds (BIP44)
-  const path = "m/44'/0'/0'/0/0"
+  // Derive the first Bitcoin testnet address (BIP44 for testnet: coin type 1)
+  const path = "m/44'/1'/0'/0/0"
   const child = root.derivePath(path)
 
-  // Get the address from the child node
-  const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey })
+  // Get the address from the child node using testnet
+  const { address } = bitcoin.payments.p2pkh({
+    pubkey: child.publicKey,
+    network: bitcoin.networks.testnet, // Specify the testnet network
+  })
 
   if (!address) {
     throw new Error('Failed to generate address')
