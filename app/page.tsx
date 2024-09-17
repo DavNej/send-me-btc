@@ -1,24 +1,16 @@
-'use client'
+import * as React from 'react'
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { PaymentRequestForm } from '@/components/payment-request-form'
+import { generateHDWallet } from '@/lib/wallet'
+
 import Typography from '@/components/ui/typography'
-import { PaymentRequestURI } from '@/components/payment-request-uri'
-import { useState } from 'react'
-import { QRCodeSVG } from 'qrcode.react'
+import PaymentRequestCard from '@/components/payment-request-card'
 
-export default function Home() {
-  const [paymentRequestURI, setPaymentRequestURI] = useState('')
+export default async function Home() {
+  const { address } = generateHDWallet()
 
   return (
     <main className="p-4 flex flex-col items-center gap-8">
-      <div className="w-full">
+      <main className="p-4">
         <div className="flex justify-between">
           <Typography.H2 className="mb-2">Send me BTC</Typography.H2>
           <Typography.H2 className="mb-2">🤑</Typography.H2>
@@ -26,22 +18,11 @@ export default function Home() {
         <Typography.H4>
           Generate a payment request on bitcoin testnet
         </Typography.H4>
-      </div>
 
-      <Card className="w-[512px] max-w-full drop-shadow-md">
-        <CardHeader>
-          <CardTitle>Create a payment request</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <PaymentRequestForm setPaymentRequestURI={setPaymentRequestURI} />
-        </CardContent>
-        {paymentRequestURI && (
-          <CardFooter className="p-8 flex flex-col items-center gap-8">
-            <QRCodeSVG value={paymentRequestURI} size={128} />
-            <PaymentRequestURI uri={paymentRequestURI} />
-          </CardFooter>
-        )}
-      </Card>
-    </main>
+        <div className="py-8 md:py-12 lg:py-16 flex flex-col items-center">
+
+          <PaymentRequestCard address={address} />
+        </div>
+      </main>
   )
 }

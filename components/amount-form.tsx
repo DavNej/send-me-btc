@@ -14,8 +14,10 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { toast } from '@/hooks/use-toast'
-import { generateBitcoinPaymentRequestURI } from '@/actions/create-payment-request-uri'
 
+/**
+ * Form schema for the payment request form
+ */
 const formSchema = z.object({
   amount: z.string().refine(
     (val) => {
@@ -28,23 +30,27 @@ const formSchema = z.object({
   ),
 })
 
+/**
+ * Type for the form values
+ */
 type FormValues = z.infer<typeof formSchema>
 
-export function PaymentRequestForm({
-  setPaymentRequestURI,
+/**
+ * AmountForm component
+ */
+export function AmountForm({
+  setAmount,
 }: {
-  setPaymentRequestURI: (uri: string) => void
+  setAmount: (amount: number) => void
 }) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: { amount: '' },
   })
 
-  async function onSubmit(values: FormValues) {
-    const uri = await generateBitcoinPaymentRequestURI(values.amount)
-
-    if (uri) {
-      setPaymentRequestURI(uri)
+  function onSubmit(values: FormValues) {
+    if (values.amount) {
+      setAmount(parseFloat(values.amount))
       return
     }
 
@@ -54,6 +60,7 @@ export function PaymentRequestForm({
       variant: 'destructive',
     })
   }
+
   return (
     <Form {...form}>
       <form

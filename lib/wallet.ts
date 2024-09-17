@@ -17,5 +17,9 @@ export function generateHDWallet() {
   // Get the address from the child node
   const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey })
 
+  if (!address) {
+    throw new Error('Failed to generate address')
+  }
+
   return { mnemonic, address }
 }
