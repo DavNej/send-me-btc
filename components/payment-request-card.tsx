@@ -19,13 +19,9 @@ function makePaymentRequestUri(address: string, amount: number) {
 
 export default function PaymentRequestCard({ address }: { address: string }) {
   const [amount, setAmount] = React.useState(0)
-  const [uri, setUri] = React.useState('')
 
-  React.useEffect(() => {
-    if (!address || !amount) return
-
-    setUri(makePaymentRequestUri(address, amount))
-  }, [address, amount])
+  const uri =
+    address && amount ? makePaymentRequestUri(address, amount) : undefined
 
   return (
     <Card className="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 max-w-[512px] drop-shadow-md">

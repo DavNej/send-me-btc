@@ -28,7 +28,7 @@ export function WalletInfo({ address }: { address: string }) {
     }
 
     lastBalanceRef.current = balance
-  }, [data?.balance])
+  }, [balance])
 
   React.useEffect(() => {
     if (isError) {
